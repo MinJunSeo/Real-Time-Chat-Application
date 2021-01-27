@@ -5,6 +5,16 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use((err, req, res, next) => {
+  console.error(
+    `message: ${err.message}, status: ${err.status}`
+  );
+  res.status(err.status || 500).json({
+    message: err.message,
+    status: err.status
+  });
+});
+
 app.listen(3000, () => {
   console.log(`Server listing at 3000 port!`);
 });
