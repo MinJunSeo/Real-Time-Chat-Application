@@ -1,0 +1,22 @@
+{
+  "name": "real-time-chat-application",
+  "version": "0.0.1",
+  "description": "with Node.js in order to study node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MinJunSeo/Real-Time-Chat-Application.git"
+  },
+  "author": "MinJun Seo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MinJunSeo/Real-Time-Chat-Application/issues"
+  },
+  "homepage": "https://github.com/MinJunSeo/Real-Time-Chat-Application#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
