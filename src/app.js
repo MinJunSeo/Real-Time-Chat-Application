@@ -11,6 +11,10 @@ app.get('/', (req, res, next) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
+io.on('connection', (socket) => {
+  console.log('user connected.', socket);
+});
+
 app.use((err, req, res, next) => {
   console.error(
     `message: ${err.message}, status: ${err.status}`
