@@ -1,6 +1,7 @@
 const express = require('express');
-
 const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -20,6 +21,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log(`Server listing at 3000 port!`);
+http.listen(3000, () => {
+  console.log(`Socket Server listing at 3000 port!`);
 });
