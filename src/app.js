@@ -5,6 +5,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.get('/', (req, res, next) => {
+  res.sendFile(__dirname + '/views/index.html');
+});
+
 app.use((err, req, res, next) => {
   console.error(
     `message: ${err.message}, status: ${err.status}`
