@@ -13,6 +13,11 @@ app.get('/', (req, res, next) => {
 
 io.on('connection', (socket) => {
   console.log('user connected.');
+
+  socket.on('chat message', (message) => {
+    console.log('message : ' + message);
+  });
+  
   socket.on('disconnect', () => {
     console.log('user disconnected.');
   });
