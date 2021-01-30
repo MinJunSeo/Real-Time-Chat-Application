@@ -8,20 +8,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res, next) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
-
-io.on('connection', (socket) => {
-  console.log('user connected.');
-
-  socket.on('chat message', (message) => {
-    io.emit('chat message', message);
-  });
-  
-  socket.on('disconnect', () => {
-    console.log('user disconnected.');
+  res.sendFile(__dirname + '/public/nickname.html', (err) => {
+    if (err) {
+      next(err);
+    }
   });
 });
+
+
 
 app.use((err, req, res, next) => {
   console.error(
