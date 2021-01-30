@@ -29,7 +29,7 @@ const send = () => {
   const message = document.createElement('div');
   const node = document.createElement(newMessage);
 
-  message.classList.add('me');
+  message.classList.add('myMessage');
   message.appendChild(node);
   chat.appendChild(message);
 
