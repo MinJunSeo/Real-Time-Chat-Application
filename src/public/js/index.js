@@ -8,3 +8,15 @@ socket.on('connect', () => {
   }
   socket.emit('newUser', nickname);
 });
+
+socket.on('update', (data) => {
+  const chat = document.getElementById('chat');
+
+  const message = document.createElement('div');
+  const node = document.createTextNode(`${data.name}: ${data.message}`);
+  const className = data.type;
+
+  message.classList.add(className);
+  message.appendChild(node);
+  chat.appendChild(message);
+});
