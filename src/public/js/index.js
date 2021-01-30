@@ -27,7 +27,7 @@ const send = () => {
 
   const chat = document.getElementById('chat-log');
   const message = document.createElement('div');
-  const node = document.createElement(newMessage);
+  const node = document.createTextNode(newMessage);
 
   message.classList.add('myMessage');
   message.appendChild(node);
