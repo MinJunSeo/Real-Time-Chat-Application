@@ -36,6 +36,6 @@ const send = () => {
 
   socket.emit('message', {
     type: 'other',
-    message: message
+    message: newMessage
   });
 }
