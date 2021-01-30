@@ -23,11 +23,11 @@ io.on('connection', (socket) => {
 
   socket.on('message', (data) => {
     data.nickname = socket.nickname;
-    socket.braodcast.emit('update', data);
+    socket.broadcast.emit('update', data);
   });
 
   socket.on('disconnect', () => {
-    socket.braodcast.emit('update', {
+    socket.broadcast.emit('update', {
       type: 'disconnect',
       name: 'SERER',
       message: socket.nickname + '님이 나가셨습니다.'
