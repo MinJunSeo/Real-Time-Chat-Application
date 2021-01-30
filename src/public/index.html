@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="/css/index.css">
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/index.js"></script>
   <title>Real-time chat application in Node.js</title>
 </head>
 <body>
-  <ul id="messages"></ul>
-  <form id="form" action="">
-    <input id="input" autocomplete="off">
-    <button>Send</button>
-  </form>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/js/index.js"></script>
+  <div id="main">
+    <div id="chat">
+      <!-- chat log -->
+    </div>
+    <div>
+      <input type="text" id="message" placeholder="enter message">
+      <button onclick="send()">Send</button>
+    </div>
+  </div>
 </body>
 </html>
