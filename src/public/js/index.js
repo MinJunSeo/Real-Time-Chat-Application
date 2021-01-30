@@ -10,7 +10,7 @@ socket.on('connect', () => {
 });
 
 socket.on('update', (data) => {
-  const chat = document.getElementById('chat');
+  const chat = document.getElementById('chat-log');
 
   const message = document.createElement('div');
   const node = document.createTextNode(`${data.name}: ${data.message}`);
@@ -20,3 +20,21 @@ socket.on('update', (data) => {
   message.appendChild(node);
   chat.appendChild(message);
 });
+
+const send = () => {
+  const newMessage = document.getElementById('my-message').value;
+  document.getElementById('my-message').value = '';
+
+  const chat = document.getElementById('chat-log');
+  const message = document.createElement('div');
+  const node = document.createElement(newMessage);
+
+  message.classList.add('me');
+  message.appendChild(node);
+  chat.appendChild(message);
+
+  socket.emit('message', {
+    type: 'message',
+    message: message
+  });
+}
