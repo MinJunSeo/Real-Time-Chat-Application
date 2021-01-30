@@ -15,7 +15,16 @@ app.get('/', (req, res, next) => {
   });
 });
 
-
+io.on('connection', (socket) => {
+  socket.on('newUser', (nickname) => {
+    socket.nickname = nickname;
+    io.emit('update', {
+      type: 'join',
+      name: 'SERVER',
+      message: nickname + '님이 접속했습니다.'
+    });
+  });
+});
 
 app.use((err, req, res, next) => {
   console.error(
