@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/index.css">
   <title>Real-time chat application in Node.js</title>
 </head>
 <body>
@@ -12,19 +12,6 @@
     <button>Send</button>
   </form>
   <script src="/socket.io/socket.io.js"></script>
-  <script>
-    const socket = io();
-
-    const form = document.getElementById('form');
-    const input = document.getElementById('input');
-
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      if (input.value) {
-        socket.emit('chat message', input.value);
-        input.value = '';
-      }
-    });
-  </script>
+  <script src="/js/index.js"></script>
 </body>
 </html>
