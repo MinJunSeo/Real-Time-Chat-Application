@@ -16,7 +16,7 @@ io.on('connection', (socket) => {
     socket.nickname = nickname;
     io.emit('update', {
       type: 'join',
-      name: 'SERVER',
+      nickname: 'SERVER',
       message: nickname + '님이 접속했습니다.'
     });
   });
@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     socket.broadcast.emit('update', {
       type: 'disconnect',
-      name: 'SERER',
+      nickname: 'SERER',
       message: socket.nickname + '님이 나가셨습니다.'
     });
   });
