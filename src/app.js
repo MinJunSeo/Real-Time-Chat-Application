@@ -24,6 +24,19 @@ io.on('connection', (socket) => {
       message: nickname + '님이 접속했습니다.'
     });
   });
+
+  socket.on('message', (data) => {
+    data.nickname = socket.nickname;
+    socket.braodcast.emit('update', data);
+  });
+
+  socket.on('disconnect', () => {
+    socket.braodcast.emit('update', {
+      type: 'disconnect',
+      name: 'SERER',
+      message: socket.nickname + '님이 나가셨습니다.'
+    });
+  });
 });
 
 app.use((err, req, res, next) => {
