@@ -13,7 +13,7 @@ socket.on('update', (data) => {
   const chat = document.getElementById('chat-log');
 
   const message = document.createElement('div');
-  const node = document.createTextNode(`${data.name}: ${data.message}`);
+  const node = document.createTextNode(`${data.nickname}: ${data.message}`);
   const className = data.type;
 
   message.classList.add(className);
@@ -34,7 +34,7 @@ const send = () => {
   chat.appendChild(message);
 
   socket.emit('message', {
-    type: 'message',
+    type: 'other',
     message: message
   });
 }
