@@ -5,8 +5,9 @@ socket.on('connect', () => {
   
   if (!nickname) {
     socket.emit('newUser', 'Guest');
+  } else {
+    socket.emit('newUser', nickname);
   }
-  socket.emit('newUser', nickname);
 });
 
 socket.on('update', (data) => {
