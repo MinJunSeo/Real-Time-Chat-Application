@@ -8,11 +8,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res, next) => {
-  res.sendFile(__dirname + '/public/nickname.html', (err) => {
-    if (err) {
-      next(err);
-    }
-  });
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 io.on('connection', (socket) => {
