@@ -40,7 +40,7 @@ const send = () => {
   chat.appendChild(message);
 
   socket.emit('message', {
-    type: 'other',
+    type: 'otherMessage',
     message: newMessage
   });
 }
