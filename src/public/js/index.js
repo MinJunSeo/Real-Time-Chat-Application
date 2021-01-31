@@ -14,8 +14,13 @@ socket.on('update', (data) => {
   const chat = document.getElementById('chat-log');
 
   const message = document.createElement('div');
-  const node = document.createTextNode(`${data.nickname}: ${data.message}`);
   const className = data.type;
+  let node = null;
+  if (data.nickname) {
+    node = document.createTextNode(`${data.nickname}: ${data.message}`);
+  } else {
+    node = document.createTextNode(`${data.message}`);
+  }
 
   message.classList.add(className);
   message.appendChild(node);
