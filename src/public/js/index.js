@@ -28,19 +28,25 @@ socket.on('update', (data) => {
 });
 
 const send = () => {
-  const newMessage = document.getElementById('my-message').value;
-  document.getElementById('my-message').value = '';
+  const messageInputForm = document.getElementById('messaging-form');
+  const input = document.getElementById('my-message');
 
-  const chat = document.getElementById('chat-log');
-  const message = document.createElement('div');
-  const node = document.createTextNode(newMessage);
+  const chatLog = document.getElementById('chat-log');
+  const messageBox = document.createElement('div');
+  const node = document.createTextNode(input.value);
 
-  message.classList.add('myMessage');
-  message.appendChild(node);
-  chat.appendChild(message);
+  messageBox.classList.add('myMessage');
+  messageBox.appendChild(node);
+  chatLog.appendChild(messageBox);
 
-  socket.emit('message', {
-    type: 'otherMessage',
-    message: newMessage
+  messageInputForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (input.value) {
+      socket.emit('message', {
+        type: 'ohterMessage',
+        message: input.value
+      });
+      input.value = '';
+    }
   });
-}
+};
