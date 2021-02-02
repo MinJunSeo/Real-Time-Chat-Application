@@ -10,6 +10,24 @@ socket.on('connect', () => {
   }
 });
 
+// socket.on('typing', (data) => {
+//   const notification = document.querySelector('.notification');
+  
+//   if (data.numOfTypers - 1) {
+//     notification.innerHTML = `${data.numOfTypers - 1} besides ${data.nickname} is typing.`;
+//   } else {
+//     notification.innerHTML = `${data.nickname} is typing.`
+//   }
+// });
+
+// socket.on('stop typing', (numOfTypers) => {
+//   const notification = document.querySelector('.notification');
+
+//   if (!numOfTypers) {
+//     notification.innerHTML = '';
+//   }
+// });
+
 socket.on('update', (data) => {
   const chat = document.getElementById('chat-log');
 
@@ -43,7 +61,7 @@ const send = () => {
     event.preventDefault();
     if (input.value) {
       socket.emit('message', {
-        type: 'ohterMessage',
+        type: 'otherMessage',
         message: input.value
       });
       input.value = '';
