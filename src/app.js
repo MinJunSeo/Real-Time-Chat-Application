@@ -32,8 +32,10 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     socket.broadcast.emit('update', {
       type: 'disconnect',
-      message: socket.nickname + '님이 나가셨습니다.'
+      message: users[socket.id] + '님이 나가셨습니다.'
     });
+
+    delete users[socket.id];
   });
 });
 
