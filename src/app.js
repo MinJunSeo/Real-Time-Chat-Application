@@ -25,7 +25,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('message', (data) => {
-    data.nickname = socket.nickname;
+    data.nickname = users[socket.id];
     socket.broadcast.emit('update', data);
   });
 
