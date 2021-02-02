@@ -11,12 +11,15 @@ app.get('/', (req, res, next) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
+const users = {};
+
 io.on('connection', (socket) => {
   socket.on('newUser', (nickname) => {
-    socket.nickname = nickname;
+    // 사용자 정보 등록
+    users[socket.id] = nickname;
+
     io.emit('update', {
       type: 'join',
-      nickname: 'SERVER',
       message: nickname + '님이 접속했습니다.'
     });
   });
@@ -29,7 +32,6 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     socket.broadcast.emit('update', {
       type: 'disconnect',
-      nickname: 'SERER',
       message: socket.nickname + '님이 나가셨습니다.'
     });
   });
