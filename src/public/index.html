@@ -13,8 +13,11 @@
       <!-- chat log -->
     </div>
     <form id="messaging-form" action="">
-      <input type="text" id="my-message" placeholder="enter message" autocomplete="off">
+      <input type="text" id="my-message" placeholder="enter message" autocomplete="off" onkeyup="checkTyping()">
       <button onclick="send()">Send</button>
+      <p>
+        <span class="notification"></span>
+      </p>
     </form>
   </div>
 </body>
