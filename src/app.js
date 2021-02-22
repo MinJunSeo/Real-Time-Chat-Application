@@ -12,6 +12,7 @@ app.get('/', (req, res, next) => {
 });
 
 const users = {};
+const typers = {};
 
 io.on('connection', (socket) => {
   socket.on('newUser', (nickname) => {
@@ -24,11 +25,25 @@ io.on('connection', (socket) => {
     });
   });
 
+  socket.on('typing', () => {
+    typers[socket.id] = true;
+
+    socket.broadcast.emit('typing', {
+      nickname: users[socket.id],
+      numOfTyper: Object.keys(typers).length
+    });
+  });
+
+  socket.on('stop typing', () => {
+    delete typers[socket.id];
+    socket.broadcast.emit('stop typing', Object.keys(typers).length);
+  });
+
   socket.on('message', (data) => {
     data.nickname = users[socket.id];
     socket.broadcast.emit('update', data);
   });
-
+  
   socket.on('disconnect', () => {
     socket.broadcast.emit('update', {
       type: 'disconnect',
