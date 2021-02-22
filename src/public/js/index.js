@@ -10,23 +10,23 @@ socket.on('connect', () => {
   }
 });
 
-// socket.on('typing', (data) => {
-//   const notification = document.querySelector('.notification');
-  
-//   if (data.numOfTypers - 1) {
-//     notification.innerHTML = `${data.numOfTypers - 1} besides ${data.nickname} is typing.`;
-//   } else {
-//     notification.innerHTML = `${data.nickname} is typing.`
-//   }
-// });
+socket.on('typing', (data) => {
+  const notification = document.querySelector('.notification');
 
-// socket.on('stop typing', (numOfTypers) => {
-//   const notification = document.querySelector('.notification');
+  if (data.numOfTyper - 1) {
+    notification.innerHTML = `${data.numOfTyper - 1} besides ${data.nickname} are typing.`;
+  } else {
+    notification.innerHTML = `${data.nickname} is typing.`
+  }
+});
 
-//   if (!numOfTypers) {
-//     notification.innerHTML = '';
-//   }
-// });
+socket.on('stop typing', (numOfTyper) => {
+  const notification = document.querySelector('.notification');
+
+  if (!numOfTyper) {
+    notification.innerHTML = '';
+  }
+});
 
 socket.on('update', (data) => {
   const chat = document.getElementById('chat-log');
@@ -64,7 +64,22 @@ const send = () => {
         type: 'otherMessage',
         message: input.value
       });
+
+      socket.emit('stop typing');
       input.value = '';
     }
   });
 };
+
+const checkTyping = () => {
+  const messageInputForm = document.getElementById('messaging-form');
+  const input = document.getElementById('my-message').value;
+
+  messageInputForm.addEventListener('keyup', (event) => {
+    if (input) {
+      socket.emit('typing');
+    } else {
+      socket.emit('stop typing');
+    }
+  });
+}
